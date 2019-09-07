@@ -1,0 +1,23 @@
+{
+  "name": "juejin",
+  "version": "1.0.0",
+  "description": "juejin文章和对应的源码",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ichenzhifan/juejin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ichenzhifan/juejin/issues"
+  },
+  "homepage": "https://github.com/ichenzhifan/juejin#readme"
+}
