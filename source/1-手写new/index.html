@@ -13,14 +13,30 @@
     function Person(firtName, lastName) {
       this.firtName = firtName;
       this.lastName = lastName;
+
+      // return 'demo';
+
+      // return {
+      //   fullName: `${this.firtName} ${this.lastName}`
+      // };
     }
 
     Person.prototype.getFullName = function () {
       return `${this.firtName} ${this.lastName}`;
     };
 
+    function _new(obj, ...rest){
+      const newObj = Object.create(obj.prototype);
+      const result = obj.apply(newObj, rest);
+
+      return typeof result === 'object' ? result : newObj;
+    }
+
     const tb = new Person('Chen', 'Tianbao');
-    console.log(tb);
+    console.log('tb', tb);
+
+    const tb2 = _new(Person, 'Chen', 'Tianbao');
+    console.log('tb2', tb2)
   </script>
 </body>
 
