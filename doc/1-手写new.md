@@ -98,6 +98,6 @@ console.log(tb2)
 ![两者的执行结果](https://user-gold-cdn.xitu.io/2019/9/7/16d0b275dccf660d?w=594&h=341&f=png&s=33119)
 
 ### demo代码
-[demo](https://github.com/ichenzhifan/juejin/blob/master/source/1-%E6%89%8B%E5%86%99new%E5%8A%9F%E8%83%BD.html)
+[demo](https://github.com/ichenzhifan/juejin/tree/master/source/1-%E6%89%8B%E5%86%99new)
 
 到此, 恭喜大家了.
