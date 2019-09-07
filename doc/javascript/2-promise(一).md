@@ -147,4 +147,4 @@ p1.then(result => {
 ### JavaScript中的Promise（二），马上就来...
 
 ### demo
-[代码]()
+[代码](https://github.com/ichenzhifan/juejin/tree/master/source/javascript/promise)
