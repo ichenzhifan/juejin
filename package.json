@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/ichenzhifan/juejin/issues"
   },
-  "homepage": "https://github.com/ichenzhifan/juejin#readme"
+  "homepage": "https://github.com/ichenzhifan/juejin#readme",
+  "devDependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  }
 }

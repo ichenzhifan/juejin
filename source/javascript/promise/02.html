@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./xpromise.js"></script>
+</head>
+
+<body>
+  <script>
+
+    let promise = new XPromise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('hello ')
+      }, 2000)
+    }).then(data => {
+      return data + ' world'
+    }).then(res => {
+      console.log(res)
+    })
+
+    const p1 = new XPromise((resolve, reject) => {
+      resolve(1);
+    });
+
+    const p2 = new XPromise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(2);
+
+      }, 1000)
+    });
+
+    const p3 = new XPromise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(3);
+      }, 3000)
+    });
+
+    XPromise.race([p1, p2, p3]).then(data => {
+      console.log(data); // 1
+    }, err => {
+      console.log(err);
+    });
+    XPromise.all([p1, p2, p3]).then(data => {
+      console.log(data); // [1, 2, 3] 结果顺序和promise实例数组顺序是一致的
+    }, err => {
+      console.log(err);
+    });
+
+
+  </script>
+</body>
+
+</html>
