@@ -48,6 +48,8 @@
       console.log(data); // [1, 2, 3] 结果顺序和promise实例数组顺序是一致的
     }, err => {
       console.log(err);
+    }).finally(x => {
+      console.log('finally', x);
     });
 
 
