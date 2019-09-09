@@ -2,6 +2,7 @@ import React, { Component, Fragment, createRef } from 'react';
 import { connect } from 'react-redux';
 import { mapStateToProps } from '../../redux/selector/mapState';
 import { mapDispatchToProps } from '../../redux/selector/mapDispatch';
+import Route from '../Route';
 
 import './index.scss';
 
@@ -38,6 +39,8 @@ class App extends Component {
 
     return (
       <Fragment>
+        <Route/>
+        
         <div>
           <input type="text" ref={this.ref} />
           <button onClick={this.onAdd}>add</button>

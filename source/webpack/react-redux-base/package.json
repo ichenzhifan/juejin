@@ -1,10 +1,10 @@
 {
-  "name": "webpack-react-app",
+  "name": "react-redux-base",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "debug": "webpack-dev-server --config ./cfg/webpack.base.js",
+    "dev": "webpack-dev-server --config ./cfg/webpack.base.js",
     "build": "webpack --env.production --config ./cfg/webpack.base.js"
   },
   "keywords": [],
