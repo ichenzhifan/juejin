@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 方法复合.
+       */
+
+      function compose(middlewares) {
+        // 方法复合， 返回的是一个复合后的方法.
+        return ctx => {
+           const dispatch = (i) => {
+            // 拿出当前要执行的方法.
+            const current = middlewares[i];
+
+            // 定义要执行的下一个方法.
+            const next = () => dispatch(i + 1);
+
+            if (!current) {
+              return Promise.resolve();
+            }
+
+            // promise完成后，再执行下一个
+            return Promise.resolve(current(ctx, next));
+          };
+
+          // 执行第0个.
+          return dispatch(0);
+        };
+      }
+
+      const p1 = async (ctx, next) => {
+        ctx.body = '1';
+        setTimeout(() => {
+          ctx.body += '2';
+        }, 2000);
+
+        await next();
+        ctx.body += '3';
+      };
+
+      const p2 = async (ctx, next) => {
+        ctx.body += '4';
+        await next();
+        ctx.body += '5';
+      };
+
+      const p3 = async (ctx, next) => {
+        ctx.body += '6';
+      };
+
+      setTimeout(async () => {
+        const fn = compose([p1, p2, p3]);
+        const ctx = {};
+        await fn(ctx);
+        console.log(ctx);
+      });
+    </script>
+  </body>
+</html>
