@@ -22,5 +22,8 @@
   "homepage": "https://github.com/ichenzhifan/juejin#readme",
   "devDependencies": {
     "promises-aplus-tests": "^2.1.2"
+  },
+  "dependencies": {
+    "redux": "^4.0.4"
   }
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 方法复合.
+      // 例如: 方法a执行的结果传递给方法b, 方法b执行的结果传给方法c, 依次类推. 典型的洋葱模型.
+      // a() -> b() -> c    ======> c(b(a()))
+
+      function compose(middlewares) {
+        if (!middlewares || middlewares.length === 0) {
+          return val => val;
+        }
+
+        if (middlewares.length === 1) {
+          return middlewares[0];
+        }
+
+        return middlewares.reduce((left, right) => {
+          return (...args) => right(left(...args));
+        });
+      }
+
+      // 取绝对值.
+      const abs = val => Math.abs(val);
+
+      // +10
+      const add = val => val + 10;
+
+      // 平方
+      const pow = val => Math.pow(val, 2);
+
+      // pow(add(abs(-10)))
+      const composeFn = compose([abs, add, pow]);
+
+      // 400
+      console.log(composeFn(-10)); 
+    </script>
+  </body>
+</html>
