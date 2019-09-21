@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const inquirer = require('inquirer');
+const chalk = require('chalk');
+const ora = require('ora');
+
+program
+  .version(require('../package.json').version, '-v, --version')
+  .command('create <name>')
+  .description('Create a new project')
+  .action(name => {
+    console.log(name);
+
+    inquirer.prompt([
+      {
+        type: 'input',
+        name: 'author',
+        message: 'Please input the author name.'
+      },
+      {
+        type: 'confirm',
+        name: 'continune',
+        message: 'Is that ok?'
+      }
+    ]).then(result => {
+      console.log(result);
+      console.log(chalk.red('some error'))
+
+      const p = ora('创建中...')
+      p.start();
+      setTimeout(() => {
+        p.stop();
+      }, 3000);
+    })
+  })
+
+  program.parse(process.argv); 
