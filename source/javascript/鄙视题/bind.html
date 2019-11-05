@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Function.prototype.bind = function(obj, ...rest){
+      const fn = this;
+      return function(...args){
+        return fn.call(obj, rest.concat(args));
+      }
+    };
+
+    // 测试
+    const say = function(message) {
+      return `${this.name} ${message}`
+    };
+    const jack = {name: 'jack'};
+    const joe = {name: 'joe'};
+
+    const jackSay = say.bind(jack);
+    const joeSay = say.bind(joe);
+
+    console.log(jackSay(', I am jack'));
+    console.log(joeSay(', I am joe'));
+  </script>
+</body>
+</html>
