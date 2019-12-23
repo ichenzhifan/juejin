@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+
+    // var newArray = arr.flat([depth]);
+
+    // 1. 扁平化一层.
+    // console.log(arr4.flat());
+
+    // 扁平化一层的代替方案1
+    const flatSingle = arr => [].concat(...arr);
+
+    // 扁平化一层的代替方案2
+    const flatSingle2 = arr => arr.reduce((result, item) => result.concat(item), []);
+
+    // 扁平化一层的代替方案3: for, forEach, while 等
+    const flatSingle3 = arr => {
+      let newArr = [];
+
+      arr.forEach(item => {
+        newArr = newArr.concat(item);
+      });
+
+      return newArr;
+    };
+
+    // 2. 扁平化任意层.
+    // reduce + concat + isArray + recursivity
+    const flatAny = (arr, depth = 1) => {
+      if(depth > 0){
+        return arr.reduce((result, item) => {
+          const newItem = Array.isArray(item) ? flatAny(item, depth - 1): item;
+          return result.concat(newItem);
+        }, []);
+      }
+
+      return arr;
+    };
+
+    const flatAny2 = (arr, depth = 1) => {
+      if(depth > 0){
+        let newArr = [];
+
+        arr.forEach(item => {
+          const newItem = Array.isArray(item) ? [].concat(flatAny2(item, depth -1)) : item;
+          newArr = newArr.concat(newItem);
+        });
+
+        return newArr;
+      }
+
+      return arr;
+    };
+  </script>
+</body>
+</html>
