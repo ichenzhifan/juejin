@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /**
+    给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+    你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍
+
+      给定 nums = [2, 7, 11, 15], target = 9
+      因为 nums[0] + nums[1] = 2 + 7 = 9
+      所以返回 [0, 1]
+    */
+
+      var twoSum = function(nums, target) {
+        var obj = {};
+
+        for (let i = 0; i < nums.length; i++) {
+          var value = nums[i];
+          var delta = target - value;
+          var isFound = Object.keys(obj).indexOf(String(delta)) !== -1;
+
+          if (isFound) {
+            var index = obj[delta];
+            return [i, index].sort();
+          }
+          obj[value] = i;
+        }
+
+        return 'cannot be found';
+      };
+
+      var lengthOfLongestSubstring = function(s) {
+        var len = s.length;
+        if (len <= 1) {
+          return len;
+        }
+
+        var l = 0;
+        var r = 0;
+        var max = 1;
+
+        for (var i = 1; i < len; i++) {
+          var s1 = s.substring(l, r + 1);
+          var index = s1.indexOf(s[i]);
+          if (index !== -1) {
+            var li = index - l;
+            var ri = r - index;
+            if (ri && li) {
+              if (li > ri) {
+                max = Math.max(max, li + 1);
+                r = index;
+              } else {
+                max = Math.max(max, ri + 1);
+                l = index;
+              }
+            }
+          } else {
+            r = i;
+            max = Math.max(max, r - l + 1);
+          }
+        }
+
+        return max;
+      };
+
+      // const result = twoSum([3, 2, 4], 6);
+      const result = lengthOfLongestSubstring('pwwkew');
+      console.log(result);
+    </script>
+  </body>
+</html>
